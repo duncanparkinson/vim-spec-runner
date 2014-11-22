@@ -265,6 +265,16 @@ describe 'Vim Spec Runner' do
 
       expect(command).to start_with 'spring'
     end
+
+    it 'is blank when spring binstub is present' do
+      set_up_spring_for('rspec')
+      FileUtils.mkdir_p 'bin/'
+      create_file_in_root('bin/spring')
+
+      run_spec_file
+
+      expect(command).to start_with 'rspec'
+    end
   end
 
   context 'autowrite' do
